@@ -65,9 +65,9 @@ exports['errorism.kd']:getDeath(identifier)
 ```lua
 local xPlayer = ESX.GetPlayerFromId(source)
 local identifier = xPlayer.getIdentifier()
-local death = exports['errorism.kd']:get(identifier)
+local death = exports['errorism.kd']:getDeath(identifier)
 
-print(tostring(death) .. ' kill') 
+print(tostring(death) .. ' death') 
 -- Output : 0 kill
 
 ```
