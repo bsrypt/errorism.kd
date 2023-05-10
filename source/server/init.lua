@@ -1,31 +1,33 @@
 ESX = exports['es_extended']:getSharedObject()
 local key = 'errorism_kd'
 
-local alreadyLogin = {}
 local skipDeathCount = {}
 
-RegisterNetEvent('esx:onPlayerSpawn', function(data)
-    if alreadyLogin[source] then return end
-    local xPlayer = ESX.GetPlayerFromId(source)
-    if not xPlayer then return end
+AddEventHandler('esx:playerLoaded', function(playerId, xPlayer)
+    if not xPlayer then 
+        xPlayer = ESX.GetPlayerFromId(playerId)
+    end
     local isDead = MySQL.scalar.await('SELECT is_dead FROM users WHERE identifier = ?', {xPlayer.identifier}) or false
     if isDead then
-        skipDeathCount[source] = true
+        skipDeathCount[playerId] = true
     end
-    alreadyLogin[source] = true
 end)
 
+
 RegisterNetEvent('esx:onPlayerDeath', function(data)
+    debug('esx:onPlayerDeath')
     local deathSource = source
     if skipDeathCount[deathSource] then
         skipDeathCount[deathSource] = false
         return
     end
     local deathXPlayer = ESX.GetPlayerFromId(deathSource)
-    if not deathxPlayer then return end
+    if not deathXPlayer then return end
     TriggerEvent('esx_datastore:getDataStore', key, deathXPlayer.identifier, function(store)
         local death = store.get('death') or 0
         store.set('death', death + 1)
+        debug(store.get('death') or 0)
+        debug('getDataStore:death')
     end)
     if not data?.killedByPlayer then return end
     local killerSource = data.killerServerId
@@ -35,10 +37,6 @@ RegisterNetEvent('esx:onPlayerDeath', function(data)
         local kill = store.get('kill') or 0
         store.set('kill', kill + 1)
     end)
-end)
-
-AddEventHandler('playerDropped', function()
-    alreadyLogin[source] = false
 end)
 
 function get(identifier)
