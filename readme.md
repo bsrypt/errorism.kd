@@ -16,6 +16,7 @@ just a simple script that store kill/death and made it easy to access.
 
 - Kill/Death tracker
 - Exports for easy access
+- Automatic skip setDeath from ambulancejob
 
 ## Requirement
 
