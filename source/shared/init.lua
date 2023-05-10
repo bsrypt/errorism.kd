@@ -1,15 +1,12 @@
 local Shared = {
     DEBUG = GetConvarInt('errorism:debug', 0) == 1
 }
-if not success then
-    return print(('^1Error: %s^0'):format(message))
-end
 
 function debug(...)
     if not Shared.DEBUG then
         return
     end
-    print(locale('debug_prefix') .. tostring(...))
+    print('debug: ' .. tostring(...))
 end
 function DumpTable(table, nb)
 	if nb == nil then
