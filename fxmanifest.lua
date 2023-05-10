@@ -4,13 +4,6 @@ author '<Discord : Errorism#0009>, <Website : https://script.errorism.cc>'
 description 'This resource is created by Errorism\'s Scripts'
 lua54 'yes'
 
-files {
-	'locales/*.json',
-	'config/shared_cfg.lua',
-}
-
-ui_page 'source/web/index.html'
-
 shared_scripts {
 	'@oxmysql/lib/MySQL.lua',
 	'source/shared/init.lua',

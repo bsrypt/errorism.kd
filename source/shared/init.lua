@@ -1,5 +1,6 @@
-local success, message = lib.checkDependency('ox_lib', '3.0.1')
-Shared = lib.require 'config.shared_cfg'
+local Shared = {
+    DEBUG = GetConvarInt('errorism:debug', 0) == 1
+}
 if not success then
     return print(('^1Error: %s^0'):format(message))
 end
