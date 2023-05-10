@@ -29,7 +29,7 @@ just a simple script that store kill/death and made it easy to access.
 #### Get both kill and death record.
 
 ```lua
-  exports['errorism.kd']:get(identifier)
+exports['errorism.kd']:get(identifier)
 ```
 
 | Parameter | Type     | Description                |
@@ -39,7 +39,7 @@ just a simple script that store kill/death and made it easy to access.
 #### Get kill record.
 
 ```lua
-  exports['errorism.kd']:getKill(identifier)
+exports['errorism.kd']:getKill(identifier)
 ```
 
 | Parameter | Type     | Description                       |
@@ -49,7 +49,7 @@ just a simple script that store kill/death and made it easy to access.
 #### Get death record.
 
 ```lua
-  exports['errorism.kd']:getDeath(identifier)
+exports['errorism.kd']:getDeath(identifier)
 ```
 
 | Parameter | Type     | Description                       |
