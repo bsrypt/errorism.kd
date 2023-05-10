@@ -24,7 +24,7 @@ just a simple script that store kill/death and made it easy to access.
 - [esx_datastore](https://github.com/esx-framework/esx_datastore)
 - [esx_ambulancejob](https://github.com/esx-framework/esx_ambulancejob)
 
-## API Reference
+## API Reference [Serverside]
 
 #### Get both kill and death record.
 
