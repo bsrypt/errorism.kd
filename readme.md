@@ -68,7 +68,7 @@ local identifier = xPlayer.getIdentifier()
 local death = exports['errorism.kd']:getDeath(identifier)
 
 print(tostring(death) .. ' death') 
--- Output : 0 kill
+-- Output : 0 death
 
 ```
 
