@@ -5,11 +5,11 @@ description 'This resource is created by Errorism\'s Scripts'
 lua54 'yes'
 
 shared_scripts {
-	'@oxmysql/lib/MySQL.lua',
 	'source/shared/init.lua',
 }
 
 server_scripts {
+	'@oxmysql/lib/MySQL.lua',
 	'source/server/init.lua',
 }
 
