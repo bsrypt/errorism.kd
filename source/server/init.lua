@@ -40,27 +40,33 @@ RegisterNetEvent('esx:onPlayerDeath', function(data)
 end)
 
 function get(identifier)
+    local p = promise.new()
     TriggerEvent('esx_datastore:getDataStore', key, identifier, function(store)
-        local data = {
+        local result = {
             death = store.get('death') or 0,
             kill = store.get('kill') or 0
         }
-        return data
+        p:resolve(result)
     end)
+    return Citizen.Await(p)
 end
 exports('get', get)
 
 function getKill(identifier)
+    local p = promise.new()
     TriggerEvent('esx_datastore:getDataStore', key, identifier, function(store)
-        return store.get('kill') or 0
+        p:resolve(store.get('kill') or 0)
     end)
+    return Citizen.Await(p)
 end
 exports('getKill', getKill)
 
 function getDeath(identifier)
+    local p = promise.new()
     TriggerEvent('esx_datastore:getDataStore', key, identifier, function(store)
-        return store.get('death') or 0
+        p:resolve(store.get('death') or 0)
     end)
+    return Citizen.Await(p)
 end
 exports('getDeath', getDeath)
 
