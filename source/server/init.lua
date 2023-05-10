@@ -1,6 +1,4 @@
 ESX = exports['es_extended']:getSharedObject()
-Server = lib.require 'config.server_cfg'
-
 local key = 'errorism_kd'
 
 local alreadyLogin = {}
