@@ -4,7 +4,7 @@ local key = 'errorism_kd'
 local skipDeathCount = {}
 
 AddEventHandler('esx:playerLoaded', function(playerId, xPlayer)
-    if not xPlayer then 
+    if not xPlayer then
         xPlayer = ESX.GetPlayerFromId(playerId)
     end
     local isDead = MySQL.scalar.await('SELECT is_dead FROM users WHERE identifier = ?', {xPlayer.identifier}) or false
@@ -13,9 +13,7 @@ AddEventHandler('esx:playerLoaded', function(playerId, xPlayer)
     end
 end)
 
-
 RegisterNetEvent('esx:onPlayerDeath', function(data)
-    debug('esx:onPlayerDeath')
     local deathSource = source
     if skipDeathCount[deathSource] then
         skipDeathCount[deathSource] = false
@@ -26,8 +24,6 @@ RegisterNetEvent('esx:onPlayerDeath', function(data)
     TriggerEvent('esx_datastore:getDataStore', key, deathXPlayer.identifier, function(store)
         local death = store.get('death') or 0
         store.set('death', death + 1)
-        debug(store.get('death') or 0)
-        debug('getDataStore:death')
     end)
     if not data?.killedByPlayer then return end
     local killerSource = data.killerServerId
@@ -38,7 +34,7 @@ RegisterNetEvent('esx:onPlayerDeath', function(data)
         store.set('kill', kill + 1)
     end)
 end)
-
+-- TODO Add a function to get the kill and death count of a player
 function get(identifier)
     local p = promise.new()
     TriggerEvent('esx_datastore:getDataStore', key, identifier, function(store)
@@ -51,7 +47,6 @@ function get(identifier)
     return Citizen.Await(p)
 end
 exports('get', get)
-
 function getKill(identifier)
     local p = promise.new()
     TriggerEvent('esx_datastore:getDataStore', key, identifier, function(store)

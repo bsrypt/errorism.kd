@@ -2,12 +2,6 @@ local Shared = {
     DEBUG = GetConvarInt('errorism:debug', 0) == 1
 }
 
-function debug(...)
-    if not Shared.DEBUG then
-        return
-    end
-    print('debug: ' .. tostring(...))
-end
 function DumpTable(table, nb)
 	if nb == nil then
 		nb = 0
